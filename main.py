@@ -1,4 +1,4 @@
-"""import Deck
+from Deck import Deck
 import Player
 
 deck = Deck()
@@ -17,4 +17,5 @@ for player_index, player in enumerate(players):
     print(len(hand))
     print(hand)
 
-print(player_hand)"""
+print(player_hand)
+
