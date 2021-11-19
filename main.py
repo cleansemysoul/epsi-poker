@@ -1,21 +1,26 @@
 from Deck import Deck
-import Player
+from Player import Player
+
+players = [Player("Player 1"), Player("Player 2"), Player("Player 3"), Player("Player 4")]
 
 deck = Deck()
-deck = deck.get_deck()
-print(len(deck))
+deck = deck.generate_deck()
 
-players = ["Player 1", "Player 2", "Player 3", "Player 4"]
-player_hand = []
-for player_index, player in enumerate(players):
-    hand = []
-    for card_index, card in enumerate(deck):
-        hand.append(card)
-        deck.pop(card_index)
-        if len(hand) == 5:
-            break
-    print(len(hand))
-    print(hand)
 
-print(player_hand)
+def generate_hands(players : []):
+    for player_index, player in enumerate(players):
+        count = 0
+        for card_index, card in enumerate(deck):
+            players[player_index].add_card(card)
+            deck.pop(card_index)
+            count += 1
+            if count == 2:
+                break
 
+
+generate_hands(players)
+
+
+for player in players:
+    player.who_am_i()
+    player.show_cards()

@@ -3,7 +3,7 @@ import random
 
 class Deck:
     def __init__(self):
-        self.suits = ["Coeur", "Carreaux", "Pique", "Trèfle"]
+        self.suits = ["Heart", "Diamonds", "Spades", "Clubs"]
         self.values = {
                         "As": "A",
                         "2": "2",
@@ -28,7 +28,7 @@ class Deck:
                 cards.append(card)
         return cards
 
-    def get_deck(self) -> []:
+    def generate_deck(self) -> []:
         new_deck = self.__build()
         random.shuffle(new_deck)
         return new_deck
