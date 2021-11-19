@@ -1,22 +1,29 @@
-from Player import Player
-from Table import Table
+# TODO : Erwann déconseille l’import from … import …
+from model.player import Player
+from model.table import Table
 
-player = Player("Human")
-bot_first = Player("IA 1")
-bot_second = Player("IA 2")
-bot_third = Player("IA 3")
 
-players = [player, bot_first, bot_second, bot_third]
+def main():
+    player = Player("Human")
+    bot_first = Player("IA 1")
+    bot_second = Player("IA 2")
+    bot_third = Player("IA 3")
 
-table = Table()
-table.first_draw(players)
+    players = [player, bot_first, bot_second, bot_third]
 
-table.bet(player, 8)
-table.bet(bot_first, 3)
-table.bet(bot_second, 5)
-table.bet(bot_third, 12)
+    table = Table(10)
+    table.first_draw(players)
 
-for player in players:
-    print(player)
+    table.bet(player, 8)
+    table.bet(bot_first, 3)
+    table.bet(bot_second, 5)
+    table.bet(bot_third, 12)
 
-print(table.get_cards())
+    for player in players:
+        print(player)
+
+    print(table.get_cards())
+
+
+if __name__ == "__main__":
+    main()
