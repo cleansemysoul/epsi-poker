@@ -1,26 +1,22 @@
-from Deck import Deck
 from Player import Player
+from Table import Table
 
-players = [Player("Player 1"), Player("Player 2"), Player("Player 3"), Player("Player 4")]
+player = Player("Human")
+bot_first = Player("IA 1")
+bot_second = Player("IA 2")
+bot_third = Player("IA 3")
 
-deck = Deck()
-deck = deck.generate_deck()
+players = [player, bot_first, bot_second, bot_third]
 
+table = Table()
+table.first_draw(players)
 
-def generate_hands(players : []):
-    for player_index, player in enumerate(players):
-        count = 0
-        for card_index, card in enumerate(deck):
-            players[player_index].add_card(card)
-            deck.pop(card_index)
-            count += 1
-            if count == 2:
-                break
-
-
-generate_hands(players)
-
+table.bet(player, 8)
+table.bet(bot_first, 3)
+table.bet(bot_second, 5)
+table.bet(bot_third, 12)
 
 for player in players:
-    player.who_am_i()
-    player.show_cards()
+    print(player)
+
+print(table.get_cards())

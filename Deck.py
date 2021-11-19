@@ -1,11 +1,14 @@
 import random
 
+"""
+TODO : Add docstring
+"""
+
 
 class Deck:
     def __init__(self):
         self.suits = ["Heart", "Diamonds", "Spades", "Clubs"]
         self.values = {
-                        "As": "A",
                         "2": "2",
                         "3": "3",
                         "4": "4",
@@ -15,10 +18,12 @@ class Deck:
                         "8": "8",
                         "9": "9",
                         "10": "10",
-                        "Valet": "J",
-                        "Dame": "Q",
-                        "Roi": "K"
+                        "Jack": "11",
+                        "Queen": "12",
+                        "King": "13",
+                        "Ace": "14"
                        }
+        self.seed = random.randint(0, 20000)
 
     def __build(self):
         cards = []
@@ -28,7 +33,11 @@ class Deck:
                 cards.append(card)
         return cards
 
-    def generate_deck(self) -> []:
+    def generate_deck(self):
+        random.seed(self.seed)
         new_deck = self.__build()
         random.shuffle(new_deck)
         return new_deck
+
+    def get_seed(self):
+        return self.seed
