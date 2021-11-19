@@ -12,8 +12,8 @@ class Player:
     def get_name(self):
         return self.name
 
-    def show_cards(self):
-        print(self.cards)
+    def get_cards(self):
+        return self.cards
 
     def add_card(self, card):
         self.cards.append(card)
@@ -42,4 +42,4 @@ class Player:
                 return False
 
     def __str__(self) -> str:
-        return f"Name : {self.name}, Cards : {self.cards}, Money : {self.money}"
+        return f"Name : {self.name}, Cards : {self.get_cards()}, Money : {self.money}"
