@@ -1,4 +1,5 @@
 # TODO : Add docstring
+# TODO: Dans mon esprit la classe player doit être une classe parente et abstraite, il faudrait rajouter deux classes enfants (human, ai/robot)
 
 
 class Player:
