@@ -1,18 +1,13 @@
-import model.deck as d
-import model.hand as h
+from model.deck import Deck
 
-# TODO : Add docstring
 
 class Table:
     def __init__(self, seed=None):
-        # new card game
-        self.__deck = d.Deck()
-        # the deck is shuffled
-        self.__deck.shuffle_cards(seed)
-        self.__bets = 0
-        self.__cards = []
-
-    # TODO: Mettre en place les getter setter avec les annotations @property
+        deck = Deck()
+        self.seed = seed if seed else deck.get_seed()
+        self.deck = deck.generate_deck()
+        self.bets = 0
+        self.cards = []
 
     def get_bets(self):
         return self.bets
@@ -24,11 +19,7 @@ class Table:
         else:
             print(f"The player : {player.get_name()} can't bet {amount}, balance : {player.get_balance()}")
 
-
     def first_draw(self, players):
-
-        # TODO: revoir cette méthode, utiliser la classe hand pour donner une main à chaque joueur, hand = h.Hand(), hand.sort_cards(), self.deck.move_cards(hand, 5)
-
         for player_index, player in enumerate(players):
             for card_index, card in enumerate(self.deck):
                 players[player_index].add_card(card)

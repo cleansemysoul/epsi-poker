@@ -1,7 +1,3 @@
-# TODO : Add docstring
-# TODO: Dans mon esprit la classe player doit être une classe parente et abstraite, il faudrait rajouter deux classes enfants (human, ai/robot)
-
-
 class Player:
     def __init__(self, name: str, money=10):
         self.name = name
