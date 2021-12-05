@@ -29,7 +29,7 @@ class EpsiPokerGui(tk.Tk):
             frame = F(container, self)
 
             # initializing frame of that object from
-            # Startpage, ParametersPage, GameModePage, SoloPartPage respectively with
+            # Startpage, ParametersPage, GameModePage, SoloGamePage respectively with
             # for loop
             self.frames[F] = frame
 
