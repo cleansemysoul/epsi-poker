@@ -46,6 +46,4 @@ class EpsiPokerGui(tk.Tk):
 
 
 if __name__ == "__main__":
-    # create the application
-    epsi_poker_gui = EpsiPokerGui()
-    epsi_poker_gui.mainloop()
+    EpsiPokerGui()
