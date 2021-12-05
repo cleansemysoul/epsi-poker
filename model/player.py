@@ -1,44 +1,40 @@
-# TODO : Add docstring
-# TODO: Dans mon esprit la classe player doit être une classe parente et abstraite, il faudrait rajouter deux classes enfants (human, ai/robot)
+import abc
 
 
 class Player:
-    def __init__(self, name: str, money=10):
-        self.name = name
-        self.cards = []
-        self.money = money
+    """ represent a player, parent class """
 
-    def get_name(self):
-        return self.name
+    def __init__(self, name: str, chips: int):
+        self.__name = name
+        self.__chips = chips
+        self.__hand = []
 
-    def get_cards(self):
-        return self.cards
+    # a getter function
+    @property
+    def name(self):
+        return self.__name
 
-    def add_card(self, card):
-        self.cards.append(card)
+    # a setter function
+    @name.setter
+    def name(self, name):
+        self.__name = name
 
-    def discard_card(self, index):
-        self.cards.pop(index)
+    # a getter function
+    @property
+    def chips(self):
+        return self.__chips
 
-    def get_balance(self):
-        return self.money
+    # a setter function
+    @chips.setter
+    def chips(self, chips):
+        self.__chips = chips
 
-    def add_money(self, amount):
-        if amount > 0:
-            self.money += amount
-            return True
-        else:
-            # Amount must be above 0
-            return False
-        
-    def remove_money(self, amount):
-        if amount > 0:
-            if self.money - amount >= 0:
-                self.money -= amount
-                return True
-            else:
-                # Money can't be negative
-                return False
+    # a getter function
+    @property
+    def hand(self):
+        return self.__hand
 
-    def __str__(self) -> str:
-        return f"Name : {self.name}, Cards : {self.get_cards()}, Money : {self.money}"
+    # a setter function
+    @hand.setter
+    def hand(self, hand):
+        self.__hand = hand
