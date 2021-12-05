@@ -7,7 +7,7 @@ class Hand(d.Deck):
     def __init__(self, label=''):
         super().__init__()
         self.__label = label
-        self.cards = []
+        self.__cards = []
 
     # a getter function
     @property
@@ -18,3 +18,13 @@ class Hand(d.Deck):
     @label.setter
     def label(self, label):
         self.__label = label
+
+    # a getter function
+    @property
+    def cards(self):
+        return self.__cards
+
+    # a setter function
+    @cards.setter
+    def cards(self, cards):
+        self.__cards = cards
