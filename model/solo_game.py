@@ -9,7 +9,7 @@ class SoloGame:
     """ represent solo game """
 
     HUMAN_NAME = 'Vous'
-    AI_NAME = ['Magali', 'Mégane', 'Énora']
+    AI_NAME = ['Magali', 'Mégane', 'Enora']
     NB_CARDS = 5
 
     def __init__(self, seed=None):
