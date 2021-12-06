@@ -4,6 +4,8 @@ import gui.color as c
 
 
 class ParametersPage(tk.Frame):
+    """ represent parameters page """
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
