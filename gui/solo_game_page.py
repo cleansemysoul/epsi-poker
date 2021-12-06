@@ -20,6 +20,7 @@ class SoloGamePage(tk.Frame):
         # get the seed
         seed = pp.ParametersPage.get_seed
         logging.info("Game seed: {}".format(seed))
+        # TODO: débuguer la récupération du seed
 
         # new solo game
         self.solo_game = sg.SoloGame(seed)
@@ -32,7 +33,7 @@ class SoloGamePage(tk.Frame):
             image_name = self.get_image_name(card.color, card.value)
             human_row = 8
             human_column = 5 + card_index
-            self.display_image('cards', human_row, human_column, image_name, 150, 229)
+            self.display_image('cards', human_row, human_column, image_name, 100, 152)
 
         # display the human name
         human_label = tk.Label(self, text=self.solo_game.human_player.name)
@@ -60,7 +61,7 @@ class SoloGamePage(tk.Frame):
                 elif player_index == 2:
                     ai_row = 5
                     ai_column = 10 + card_index
-                self.display_image('cards', ai_row, ai_column, image_name, 150, 229)
+                self.display_image('cards', ai_row, ai_column, image_name, 100, 152)
 
         # display the artificial intelligence name
         for player_index, ai_player in enumerate(ai_players):
