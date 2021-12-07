@@ -5,6 +5,8 @@ import gui.color as c
 
 
 class GameModePage(tk.Frame):
+    """ represent game mode page gui """
+
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
