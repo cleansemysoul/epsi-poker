@@ -30,10 +30,9 @@ class Deck:
             res.append(str(card))
         return '\n'.join(res)
 
-    def shuffle_cards(self, seed: int = None):
+    def shuffle_cards(self, seed: int):
         """shuffles the cards in this game"""
-        if seed is not None:
-            random.seed(seed)
+        random.seed(seed)
         random.shuffle(self.cards)
 
     def sort_cards(self):
