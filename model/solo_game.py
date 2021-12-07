@@ -3,6 +3,8 @@ import model.hand as ha
 import model.human as hu
 import model.player as p
 import model.ai as a
+import logging
+logging.basicConfig(level=logging.INFO)
 
 
 class SoloGame:
@@ -12,7 +14,8 @@ class SoloGame:
     AI_NAME = ['Magali', 'Mégane', 'Enora']
     NB_CARDS = 5
 
-    def __init__(self, seed=None):
+    def __init__(self, seed: int):
+
         # new deck
         self.__deck = d.Deck()
         self.__deck.shuffle_cards(seed)
