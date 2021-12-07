@@ -13,6 +13,16 @@ class EpsiPokerGui(tk.Tk):
         # __init__ function for class Tk
         tk.Tk.__init__(self, *args, **kwargs)
 
+        # creating fixed geometry of the
+        # tkinter window with dimensions 150x200
+        self.geometry('1600x900')
+
+        # title
+        self.title('EPSI Poker')
+
+        # seed
+        self.seed = tk.StringVar()
+
         # creating a container
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
