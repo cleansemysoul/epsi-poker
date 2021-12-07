@@ -1,10 +1,9 @@
-import logging
 import os
+import random
 import tkinter as tk
 from PIL import Image, ImageTk
 import gui.game_mode_page as gmp
 import model.solo_game as sg
-import gui.parameters_page as pp
 import gui.color as gc
 import model.card as mc
 import logging
@@ -16,24 +15,30 @@ class SoloGamePage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.solo_game = None
+        self.image_list = None
+        self.controller = controller
+
+        # launch game button
+        self.btn_launch_gane = tk.Button(self, text="Lancer la partie solo", height=40, width=80)
+        self.btn_launch_gane.configure(background=gc.Color.YELLOW.value)
+        self.btn_launch_gane.configure(foreground=gc.Color.BLACK.value)
+        self.btn_launch_gane.configure(command=self.launch_gane)
+        self.btn_launch_gane.grid(row=9, column=1)
+
+    def launch_gane(self):
+
+        # delete launch game button
+        self.btn_launch_gane.destroy()
 
         # get the seed
-        seed = pp.ParametersPage.get_seed
-        logging.info("Game seed: {}".format(seed))
-        # TODO: débuguer la récupération du seed
+        seed = random.randrange(0, 1000) if self.controller.seed.get() == "" else int(self.controller.seed.get())
 
         # new solo game
         self.solo_game = sg.SoloGame(seed)
 
         # for storing those images
         self.image_list = []
-
-        # display the human hand
-        for card_index, card in enumerate(self.solo_game.human_player.hand.cards):
-            image_name = self.get_image_name(card.color, card.value)
-            human_row = 8
-            human_column = 5 + card_index
-            self.display_image('cards', human_row, human_column, image_name, 100, 152)
 
         # display the human name
         human_label = tk.Label(self, text=self.solo_game.human_player.name)
@@ -43,6 +48,13 @@ class SoloGamePage(tk.Frame):
 
         # display the human picture
         self.display_image('human', 6, 7, "default", 100, 100)
+
+        # display the human hand
+        for card_index, card in enumerate(self.solo_game.human_player.hand.cards):
+            image_name = self.get_image_name(card.color, card.value)
+            human_row = 8
+            human_column = 5 + card_index
+            self.display_image('cards', human_row, human_column, image_name, 100, 152)
 
         # display the artificial intelligence hands
         ai_players = self.solo_game.ai_players
@@ -97,9 +109,25 @@ class SoloGamePage(tk.Frame):
                 ai_column = 12
             self.display_image('ai', ai_row, ai_column, image_name, 100, 100)
 
+        # relaunch game button
+        btn_relaunch_gane = tk.Button(self, text="Nouvelle partie")
+        btn_relaunch_gane.configure(background=gc.Color.YELLOW.value)
+        btn_relaunch_gane.configure(foreground=gc.Color.BLACK.value)
+        btn_relaunch_gane.configure(command=self.launch_gane)
+        btn_relaunch_gane.grid(row=9, column=0, columnspan=5, sticky='ew')
+
+        # display the seed
+        seed_label = tk.Label(self, text="Graine du jeu : {}".format(seed))
+        seed_label.configure(background=gc.Color.PURPLE.value)
+        seed_label.configure(foreground=gc.Color.WHITE.value)
+        seed_label.grid(row=9, column=5, columnspan=5, sticky='ew')
+
         # quit button
-        btn_stop = tk.Button(self, text="Quitter la partie", command=lambda: controller.show_frame(gmp.GameModePage))
-        btn_stop.grid(row=9, column=0, columnspan=15)
+        btn_stop = tk.Button(self, text="Quitter la partie")
+        btn_stop.configure(background=gc.Color.YELLOW.value)
+        btn_stop.configure(foreground=gc.Color.BLACK.value)
+        btn_stop.configure(command=lambda: self.controller.show_frame(gmp.GameModePage))
+        btn_stop.grid(row=9, column=10, columnspan=5, sticky='ew')
 
     @staticmethod
     def get_image_name(card_color, card_value):
