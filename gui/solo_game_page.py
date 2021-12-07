@@ -58,63 +58,38 @@ class SoloGamePage(tk.Frame):
 
         # display the artificial intelligence hands
         ai_players = self.solo_game.ai_players
+
         for player_index, ai_player in enumerate(ai_players):
             for card_index, card in enumerate(ai_player.hand.cards):
                 # image_name = self.get_image_name(card.color, card.value)
                 image_name = "default"
-                ai_row = 0
-                ai_column = 0
-                if player_index == 0:
-                    ai_row = 5
-                    ai_column = 0 + card_index
-                elif player_index == 1:
-                    ai_row = 2
-                    ai_column = 5 + card_index
-                elif player_index == 2:
-                    ai_row = 5
-                    ai_column = 10 + card_index
-                self.display_image('cards', ai_row, ai_column, image_name, 100, 152)
+                grid = [
+                    {"row": 5, "column": 0 + card_index},
+                    {"row": 2, "column": 5 + card_index},
+                    {"row": 5, "column": 10 + card_index}
+                ]
+                self.display_image('cards', grid[player_index]["row"], grid[player_index]["column"], image_name, 100, 152)
 
         # display the artificial intelligence name
+        grid = [{"row": 4, "column": 0},{"row": 1, "column": 5}, {"row": 4, "column": 10}]
         for player_index, ai_player in enumerate(ai_players):
-            ai_row = 0
-            ai_column = 0
-            if player_index == 0:
-                ai_row = 4
-                ai_column = 0
-            elif player_index == 1:
-                ai_row = 1
-                ai_column = 5
-            elif player_index == 2:
-                ai_row = 4
-                ai_column = 10
             ai_label = tk.Label(self, text=ai_player.name)
             ai_label.configure(background=gc.Color.PURPLE.value)
             ai_label.configure(foreground=gc.Color.WHITE.value)
-            ai_label.grid(row=ai_row, column=ai_column, columnspan=5)
+            ai_label.grid(row=grid[player_index]["row"], column=grid[player_index]["column"], columnspan=5)
 
         # display the artificial intelligence picture
+        grid = [{"row": 3, "column": 2},{"row": 0, "column": 7}, {"row": 3, "column": 12}]
         for player_index, ai_player in enumerate(ai_players):
             image_name = ai_player.name
-            ai_row = 0
-            ai_column = 0
-            if player_index == 0:
-                ai_row = 3
-                ai_column = 2
-            elif player_index == 1:
-                ai_row = 0
-                ai_column = 7
-            elif player_index == 2:
-                ai_row = 3
-                ai_column = 12
-            self.display_image('ai', ai_row, ai_column, image_name, 100, 100)
+            self.display_image('ai', grid[player_index]["row"], grid[player_index]["column"], image_name, 100, 100)
 
         # relaunch game button
-        btn_relaunch_gane = tk.Button(self, text="Nouvelle partie")
-        btn_relaunch_gane.configure(background=gc.Color.YELLOW.value)
-        btn_relaunch_gane.configure(foreground=gc.Color.BLACK.value)
-        btn_relaunch_gane.configure(command=self.launch_gane)
-        btn_relaunch_gane.grid(row=9, column=0, columnspan=5, sticky='ew')
+        btn_relaunch_game = tk.Button(self, text="Nouvelle partie")
+        btn_relaunch_game.configure(background=gc.Color.YELLOW.value)
+        btn_relaunch_game.configure(foreground=gc.Color.BLACK.value)
+        btn_relaunch_game.configure(command=self.launch_gane)
+        btn_relaunch_game.grid(row=9, column=0, columnspan=5, sticky='ew')
 
         # display the seed
         seed_label = tk.Label(self, text="Graine du jeu : {}".format(seed))
