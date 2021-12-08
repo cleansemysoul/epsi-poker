@@ -8,4 +8,4 @@ class Ai(p.Player):
         super().__init__(name, chips)
 
     def __str__(self) -> str:
-        return f"Type: artificial intelligence, Name : {self.name}, Chip : {self.chips}"
+        return f"Type: artificial intelliegnce, Name : {self.name}, Chip : {self.chips}"
