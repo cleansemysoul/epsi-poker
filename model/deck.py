@@ -53,7 +53,7 @@ class Deck:
         """Removes a card from the deck or raises exception if it is not there"""
         self.cards.remove(card)
 
-    def move_cards(self, hand, num: int):
+    def move_cards_to_hand(self, hand, num: int):
         """moves the given number of cards from the game into the hand.
 
         hand: destination Hand object
@@ -61,3 +61,12 @@ class Deck:
         """
         for i in range(num):
             hand.add_card(self.pop_card())
+
+    def move_cards_to_table(self, table, num: int):
+        """moves the given number of cards from the game into the hand.
+
+        table: destination Table object
+        num: integer number of cards to move
+        """
+        for i in range(num):
+            table.add_card(self.pop_card())
