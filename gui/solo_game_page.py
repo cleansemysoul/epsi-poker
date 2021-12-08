@@ -20,16 +20,20 @@ class SoloGamePage(tk.Frame):
         self.controller = controller
 
         # launch game button
-        self.btn_launch_gane = tk.Button(self, text="Lancer la partie solo", height=40, width=80)
-        self.btn_launch_gane.configure(background=gc.Color.YELLOW.value)
-        self.btn_launch_gane.configure(foreground=gc.Color.BLACK.value)
-        self.btn_launch_gane.configure(command=self.launch_gane)
-        self.btn_launch_gane.grid(row=9, column=1)
+        self.btn_launch_game = tk.Button(self, text="Lancer la partie solo", height=40, width=80)
+        self.btn_launch_game.configure(background=gc.Color.YELLOW.value)
+        self.btn_launch_game.configure(foreground=gc.Color.BLACK.value)
+        self.btn_launch_game.configure(command=self.launch_game)
+        self.btn_launch_game.grid(row=9, column=1)
 
-    def launch_gane(self):
+    def launch_game(self):
+
+        # configuring column sizes
+        for c in range(15):
+            self.grid_columnconfigure(c, minsize=100)
 
         # delete launch game button
-        self.btn_launch_gane.destroy()
+        self.btn_launch_game.destroy()
 
         # get the seed
         seed = random.randrange(0, 1000) if self.controller.seed.get() == "" else int(self.controller.seed.get())
@@ -58,11 +62,10 @@ class SoloGamePage(tk.Frame):
 
         # display the artificial intelligence hands
         ai_players = self.solo_game.ai_players
-
         for player_index, ai_player in enumerate(ai_players):
             for card_index, card in enumerate(ai_player.hand.cards):
-                # image_name = self.get_image_name(card.color, card.value)
-                image_name = "default"
+                image_name = self.get_image_name(card.color, card.value)
+                # image_name = "default"
                 grid = [
                     {"row": 5, "column": 0 + card_index},
                     {"row": 2, "column": 5 + card_index},
@@ -84,11 +87,19 @@ class SoloGamePage(tk.Frame):
             image_name = ai_player.name
             self.display_image('ai', grid[player_index]["row"], grid[player_index]["column"], image_name, 100, 100)
 
+        # display the card’s table
+        for card_index, card in enumerate(self.solo_game.table.cards):
+            image_name = self.get_image_name(card.color, card.value)
+            # image_name = "default"
+            table_row = 5
+            table_column = 5 + card_index
+            self.display_image('cards', table_row, table_column, image_name, 100, 152)
+
         # relaunch game button
         btn_relaunch_game = tk.Button(self, text="Nouvelle partie")
         btn_relaunch_game.configure(background=gc.Color.YELLOW.value)
         btn_relaunch_game.configure(foreground=gc.Color.BLACK.value)
-        btn_relaunch_game.configure(command=self.launch_gane)
+        btn_relaunch_game.configure(command=self.launch_game)
         btn_relaunch_game.grid(row=9, column=0, columnspan=5, sticky='ew')
 
         # display the seed
