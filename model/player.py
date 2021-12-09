@@ -1,4 +1,5 @@
 import abc
+# TODO: rendre cette classe abstraite
 
 
 class Player:
