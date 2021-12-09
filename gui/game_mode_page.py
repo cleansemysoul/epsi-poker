@@ -10,6 +10,10 @@ class GameModePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
+        # configuring column sizes
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_columnconfigure(2, weight=1)
+
         # playing solo button
         btn_play_solo = tk.Button(self, text="Jouer en solo", height=40, width=40)
         btn_play_solo.configure(background=c.Color.YELLOW.value)
@@ -25,4 +29,4 @@ class GameModePage(tk.Frame):
 
         # back button
         btn_back = tk.Button(self, text="Retour", command=lambda: controller.show_frame(sp.StartPage))
-        btn_back.grid(column=1, row=1, columnspan=2, sticky='ew')
+        btn_back.grid(column=1, row=1, columnspan=2)
