@@ -10,6 +10,10 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
+        # configuring column sizes
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_columnconfigure(2, weight=1)
+
         # play button
         btn_play = tk.Button(self, text="Jouer au poker EPSI", height=40, width=40)
         btn_play.configure(background=c.Color.YELLOW.value)
@@ -26,4 +30,4 @@ class StartPage(tk.Frame):
 
         # quit button
         btn_quit = tk.Button(self, text="Quitter le jeu", command=self.quit)
-        btn_quit.grid(column=1, row=1, columnspan=2, sticky='ew')
+        btn_quit.grid(column=1, row=1, columnspan=2)
