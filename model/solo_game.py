@@ -24,13 +24,13 @@ class SoloGame:
 
         # add human player
         human = hu.Human(self.HUMAN_NAME)
-        self.add_hand(human)
+        self.__add_hand(human)
         self.__human_player = human
 
         # add artificial intelligence players
         def add(name):
             ai = a.Ai(name)
-            self.add_hand(ai)
+            self.__add_hand(ai)
             return ai
         self.__ai_players = list(map(add, self.AI_NAME))
 
@@ -54,7 +54,8 @@ class SoloGame:
     def table(self):
         return self.__table
 
-    def add_hand(self, player: p.Player):
+    # add hand to player
+    def __add_hand(self, player: p.Player):
         hand = ha.Hand()
         hand.sort_cards()
         self.__deck.move_cards_to_hand(hand, self.NB_CARDS_HAND)
